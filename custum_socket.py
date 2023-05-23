@@ -23,5 +23,3 @@ class custum_socket:
        message = message_bytes.decode('ascii')
        return message
    
-c=custum_socket()
-c.sendto("Hello", ("127.0.0.1", 12345))
