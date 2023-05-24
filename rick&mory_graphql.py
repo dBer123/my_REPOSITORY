@@ -2,8 +2,8 @@ import json
 import requests
 import pandas as pd
 
-
-QUERY = """
+def characters_by_ep():
+  query = """
 query {
   characters{
     results{
@@ -15,16 +15,13 @@ query {
   }
 }
 """
-URL = r"https://rickandmortyapi.com/graphql"
-response = requests.post(URL, json={'query': QUERY})
-json_data = json.loads(response.text)
+  url = r"https://rickandmortyapi.com/graphql"
+  response = requests.post(url, json={'query': query})
+  json_data = json.loads(response.text)
 
-df_data = json_data["data"]["characters"]["results"]
-for characters in df_data:
-    print(characters['name'])
-    print(len(characters['episode']))
-    
-# עוד דרך כי למה לא
-df = pd.DataFrame(df_data)
-df.sort_values('episode',key=lambda x:x.str.len())    
-print(df)    
+  df_data = json_data["data"]["characters"]["results"]
+  df = pd.DataFrame(df_data)
+  df.sort_values('episode',key=lambda x:x.str.len())    
+  print(df)    
+  
+characters_by_ep()
